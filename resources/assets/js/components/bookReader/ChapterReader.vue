@@ -61,11 +61,13 @@ export default {
             return this.getText()
         },
         rangeStart () {
-            let start = this.currentPage - this.range;
+            // let start = this.currentPage - this.range;
+            let start = this.currentPage;
             return (start > 0) ? start : 1
         },
         rangeEnd () {
-            let end = this.currentPage + this.range;
+            // let end = this.currentPage + this.range;
+            let end = this.currentPage;
             return (end < this.count) ? end : this.count
         },
         hasFirst () {
