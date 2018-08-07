@@ -79,7 +79,7 @@
 
                     @guest
                         <a class="dropdown-item" href="{{ route('login') }}">Войти</a>
-                        <a class="dropdown-item" href="{{ route('register') }}">Зарегестрироваться</a>
+                        <a class="dropdown-item" href="{{ route('register') }}">Зарегистрироваться</a>
                     @else
                         <a  class="dropdown-item" href="/mybooks" role="button">
                             {{ Auth::user()->name }}
@@ -142,7 +142,7 @@
 
                     @guest
                         <a class="dropdown-item" href="{{ route('login') }}">Войти</a>
-                        <a class="dropdown-item" href="{{ route('register') }}">Зарегестрироваться</a>
+                        <a class="dropdown-item" href="{{ route('register') }}">Зарегистрироваться</a>
                     @else
                         <a  class="dropdown-item" href="/mybooks" role="button">
                             {{ Auth::user()->name }}
