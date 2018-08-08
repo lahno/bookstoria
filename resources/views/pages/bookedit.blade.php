@@ -56,11 +56,13 @@
                                 </div>
                                 <script type="text/javascript">
                                     $(document).ready(function() {
-                                        let last_valid_selection = null;
+                                        let last_valid_selection_cats = null;
                                         $('#cats').change(function(event) {
                                             if ($(this).val().length > 3) {
-                                                $(this).val(last_valid_selection);
+                                                $(this).val(last_valid_selection_cats);
                                                 alert('Возможно указать не больше 3 жанров');
+                                            } else {
+                                                last_valid_selection_cats = $(this).val();
                                             }
                                         });
                                     });
@@ -80,11 +82,13 @@
                                 </div>
                                 <script type="text/javascript">
                                     $(document).ready(function() {
-                                        let last_valid_selection = null;
+                                        let last_valid_selection_collections = null;
                                         $('#collections').change(function(event) {
                                             if ($(this).val().length > 5) {
-                                                $(this).val(last_valid_selection);
+                                                $(this).val(last_valid_selection_collections);
                                                 alert('Возможно указать не больше 5 тематических подборок');
+                                            } else {
+                                                last_valid_selection_collections = $(this).val();
                                             }
                                         });
                                     });
