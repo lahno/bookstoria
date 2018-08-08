@@ -61,8 +61,6 @@
                                             if ($(this).val().length > 3) {
                                                 $(this).val(last_valid_selection);
                                                 alert('Возможно указать не больше 3 жанров');
-                                            } else {
-                                                last_valid_selection = $(this).val();
                                             }
                                         });
                                     });
@@ -87,8 +85,6 @@
                                             if ($(this).val().length > 5) {
                                                 $(this).val(last_valid_selection);
                                                 alert('Возможно указать не больше 5 тематических подборок');
-                                            } else {
-                                                last_valid_selection = $(this).val();
                                             }
                                         });
                                     });
