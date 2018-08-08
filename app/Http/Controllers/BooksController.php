@@ -139,16 +139,14 @@ class BooksController extends Controller
 
                             $book->tags = $request->tags;
                             $book->save();
-                            //$b = Book::find($book->id);
-                            foreach ($request->cats as $cat)
-                            {
-                                $book->categories()->attach($cat);
+
+                            if ($request->cats){
+                                $book->categories()->detach($request->cats);
+                                $book->categories()->attach($request->cats);
                             }
                             if ($request->collections){
-                                foreach ($request->collections as $cat)
-                                {
-                                    $book->collections()->attach($cat);
-                                }
+                                $book->collections()->detach($request->collections);
+                                $book->collections()->attach($request->collections);
                             }
 
                             return redirect()->route('edittbook', $book->id);
