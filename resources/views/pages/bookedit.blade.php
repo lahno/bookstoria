@@ -56,8 +56,9 @@
                                 </div>
                                 <script type="text/javascript">
                                     $(document).ready(function() {
-                                        let last_valid_selection_cats = null;
-                                        $('#cats').change(function(event) {
+                                        let sel_cats = $('#cats');
+                                        let last_valid_selection_cats = sel_cats.val();
+                                        sel_cats.change(function(event) {
                                             if ($(this).val().length > 3) {
                                                 $(this).val(last_valid_selection_cats);
                                                 alert('Возможно указать не больше 3 жанров');
@@ -82,8 +83,9 @@
                                 </div>
                                 <script type="text/javascript">
                                     $(document).ready(function() {
-                                        let last_valid_selection_collections = null;
-                                        $('#collections').change(function(event) {
+                                        let sel_collections = $('#collections');
+                                        let last_valid_selection_collections = sel_collections.val();
+                                        sel_collections.change(function(event) {
                                             if ($(this).val().length > 5) {
                                                 $(this).val(last_valid_selection_collections);
                                                 alert('Возможно указать не больше 5 тематических подборок');
