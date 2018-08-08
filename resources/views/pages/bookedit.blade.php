@@ -54,6 +54,19 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <script type="text/javascript">
+                                    $(document).ready(function() {
+                                        let last_valid_selection = null;
+                                        $('#cats').change(function(event) {
+                                            if ($(this).val().length > 3) {
+                                                $(this).val(last_valid_selection);
+                                                alert('Возможно указать не больше 3 жанров');
+                                            } else {
+                                                last_valid_selection = $(this).val();
+                                            }
+                                        });
+                                    });
+                                </script>
 
                                 <div class="form-group col-md-6">
                                     <label for="FormControlSelect2">Темматические подборки</label>
@@ -67,6 +80,19 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <script type="text/javascript">
+                                    $(document).ready(function() {
+                                        let last_valid_selection = null;
+                                        $('#collections').change(function(event) {
+                                            if ($(this).val().length > 5) {
+                                                $(this).val(last_valid_selection);
+                                                alert('Возможно указать не больше 5 тематических подборок');
+                                            } else {
+                                                last_valid_selection = $(this).val();
+                                            }
+                                        });
+                                    });
+                                </script>
                                 <div class="form-group col-md-12">
                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="tags"  rows="4" placeholder="Теги (через запятую)">{{$book->tags}}</textarea>
                                 </div>
