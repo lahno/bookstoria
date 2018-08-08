@@ -23,7 +23,8 @@ AdminSection::registerModel(\App\Book::class, function (ModelConfiguration $mode
                 AdminColumn::lists('categories.name')->setLabel('Категории'),
                 AdminColumn::lists('collections.name')->setLabel('Тематические подборки'),
                 AdminColumn::text('tags')->setLabel('Теги'),
-                AdminColumn::datetime('created_at')->setLabel('Дата создания')
+                AdminColumn::datetime('created_at')->setLabel('Дата создания'),
+                AdminColumn::datetime('updated_at')->setLabel('Дата обновления')
             ])->paginate(20);
 
         return $display;
