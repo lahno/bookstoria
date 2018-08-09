@@ -38,7 +38,7 @@ class OrderController extends Controller
             $order->save();
 
             // Формируем данные для отправки на Платон
-            $summ_proc = ($order->summ/100)*env('PROC_PLATON')+$order->summ;
+            $summ_proc = number_format(($order->summ/100)*env('PROC_PLATON')+$order->summ, 2);
             $summ = number_format(($summ_proc)*env('KURS_PLATON'), 2, '.', '');
             $pass = 'CZSd5fKXN7E2s1vn0jwGJbma5Mbd9re8';
             $data['key'] = 'YWB6U31E4G';

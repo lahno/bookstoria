@@ -5,7 +5,7 @@ $(document).ready(function() {
      */
     $('#order_create').on('click', function (e) {
         e.preventDefault();
-        var modal = $('#modalCreateOrder');
+        let modal = $('#modalCreateOrder');
 
         $.ajax({
             type: 'GET',
