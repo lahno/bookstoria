@@ -20,15 +20,16 @@ class OrderController extends Controller
         if ($request->session()->has('order_id')){
             $request->session()->forget('order_id');
         }
-        if(Auth::user() && isset($id) && !empty($id)){
+        if(isset($id) && !empty($id)){
             $book = Book::find($id);
-//            $cats = Category::all();
-//            $cols = Collection::all();
-//            $foot = FooterMenu::all();
-            $user = User::find(Auth::user()->id);
+            if (Auth::user()){
+                $user = User::find(Auth::user()->id);
+            }else{
+                $user = User::find($request->user['id']);
+            }
 
-            $order = Order::firstOrNew(['book_id' => $id, 'user_id' => Auth::user()->id, 'result' => 'create']);
-            $order->user_id = Auth::user()->id;
+            $order = Order::firstOrNew(['book_id' => $id, 'user_id' => $user->id, 'result' => 'create']);
+            $order->user_id = $user->id;
             $order->author_id = $book->author_id;
             $order->book_id = $id;
             $order->summ = number_format($book->price, 2, '.', '');
@@ -54,28 +55,6 @@ class OrderController extends Controller
             $data['sign'] = md5(strtoupper(strrev($data['key']).strrev($data['payment']).strrev($data['data']).strrev($data['url']).strrev($pass)));
 
            if(isset($order) && isset($book) && !empty($book)){
-               /*$request->session()->put('order_id', $order->id);
-               $user->order_id = $order->id;
-               $user->save();
-               $liqpay = new LiqPay(env('LIQPAY_PUBLIC_KEY'), env('LIQPAY_PRIVATE_KEY'));
-               $html = $liqpay->cnb_form(array(
-                   'action'         => 'pay',
-                   'amount'         => $book->price,
-                   'currency'       => 'RUB',
-                   'description'    => $order->description,
-                   'order_id'       => $order->id, // $order->payment_id
-                   'version'        => '3',
-//                   'sandbox'        => '1',
-               ));
-
-               return view('pages.liqpay',[
-                   'form'=>$html,
-                   'cols'=>$cols,
-                   'cats'=>$cats,
-                   'book'=>$book,
-                   'foot'=>$foot
-               ]);*/
-
                $user->order_id = $order->id;
                $user->save();
                return ['status' => true, 'order' => $order, 'data' => $data];

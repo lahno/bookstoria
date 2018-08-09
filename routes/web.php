@@ -33,8 +33,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/library/add/{id}', 'LibraryController@add')->name('libadd');
     Route::get('/mylibrary', 'LibraryController@libraryGet')->name('lib');
     Route::get('/library/delete/{id}', 'LibraryController@delete')->name('libdel');
-    //Orders
-    Route::get('/order/create/{id}', 'OrderController@createOrder')->name('create_order');
     //Blogs
     Route::get('/myblogs', 'BlogsController@myBlogs');
     Route::get('/blog/add', 'BlogsController@addBlog');
@@ -90,6 +88,8 @@ Route::get('/competition/all', 'CompetitionController@getAll');
 Route::get('/competition/{id}', 'CompetitionController@getComp');
 Route::post('/competition/createorder', 'CompetitionController@createOrder');
 
+//Orders
+Route::get('/order/create/{id}', 'OrderController@createOrder')->name('create_order');
 //Order
 Route::post('/order/accept/platon','OrderController@acceptOrder');
 
@@ -99,6 +99,11 @@ Route::prefix('api')->group(function () {
     Route::get('/getChapter/{id}', 'Api\ApiController@getChapter');
     Route::get('/getAuthors', 'Api\ApiController@getAuthors');
     Route::get('/addAuthors', 'Api\ApiController@addAuthors');
+
+    Route::middleware(['guest'])->group(function () {
+        //quickRegister
+//        Route::post('/quickRegister','Api\ApiController@quickRegister')->name('quickRegister');
+    });
 });
 
 

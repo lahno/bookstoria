@@ -30,7 +30,6 @@ class ChaptersController extends Controller
                     if($chapter->number < $b->chapter_count || isset($paybook) && !empty($paybook))
                     {
                         $out =  strip_tags($chapter->text,'<p><a><br>');
-
                         return view('pages.chapter',[
                             'page'=>$b,
                             'cols'=>$cols,
@@ -41,33 +40,22 @@ class ChaptersController extends Controller
                             'foot'=>$foot
                         ]);
                     }else{
-                        if(Auth::user()){
-                            $order = new Order();
-                            $order->user_id = Auth::user()->id;
-                            if ($b->author) $order->author_id = $b->author->id;
-                            elseif ($b->author_id) $order->author_id = $b->author_id;
-                            $order->book_id = $b->id;
-                            $order->save();
-                            $book = Book::find($b->id);
-                            $cats = Category::all();
-                            $cols = Collection::all();
-                            if(isset($order) && isset($book) && !empty($book)){
+                        $book = Book::find($b->id);
+                        $cats = Category::all();
+                        $cols = Collection::all();
+                        if(isset($book) && !empty($book)){
+                            if (Auth::user()){
+                                $order = new Order();
+                                $order->user_id = Auth::user()->id;
+                                if ($b->author) $order->author_id = $b->author->id;
+                                elseif ($b->author_id) $order->author_id = $b->author_id;
+                                $order->book_id = $b->id;
+                                $order->save();
                                 $html = '<br><a href="'.route('create_order', ['id' => $b->id]).'" class="btn book-btn btn-success" id="order_create" book-id="'.$b->id.'">Купить за '.$b->price.' ₽</a>';
-                                $out = "Доступ к данной главе только после покупки книги";
-                                return view('pages.chapter',[
-                                    'page'=>$b,
-                                    'cols'=>$cols,
-                                    'cats'=>$cats,
-                                    'chapter'=>$chapter,
-                                    'chapters'=>$chapters,
-                                    'out'=>$out,
-                                    'html'=>$html,
-                                    'foot'=>$foot,
-                                ]);
+                            }else{
+                                $html = '<br><a href="'.route('create_order', ['id' => $b->id]).'" class="btn book-btn btn-success" id="order_user_create" book-id="'.$b->id.'">Купить за '.$b->price.' ₽</a>';
                             }
-                        }else{
                             $out = "Доступ к данной главе только после покупки книги";
-                            $html = '<a href="/login">войдите на сайт чтобы купить книгу</a>';
                             return view('pages.chapter',[
                                 'page'=>$b,
                                 'cols'=>$cols,
@@ -76,7 +64,7 @@ class ChaptersController extends Controller
                                 'chapters'=>$chapters,
                                 'out'=>$out,
                                 'html'=>$html,
-                                'foot'=>$foot
+                                'foot'=>$foot,
                             ]);
                         }
 

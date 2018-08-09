@@ -5,8 +5,15 @@ namespace App\Http\Controllers\Api;
 use App\Author;
 use App\Book;
 use App\Chapter;
+use App\Mail\OrderUserRegister;
+use App\RoleUser;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class ApiController extends Controller
 {
@@ -112,4 +119,42 @@ class ApiController extends Controller
         }
         return response()->json(['success' => true], 200);
     }
+
+    /*public function quickRegister(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email|max:255|unique:users'
+        ]);
+
+        if ($validator->fails()) {
+            return ['status' => false, 'errors' => $validator->errors()->all()];
+        }
+
+        $pass = $this->generateRandomString(6);
+        $user = User::create([
+            'name' => 'User_'.$request->email,
+            'email' => $request->email,
+            'password' => Hash::make($pass),
+        ]);
+        RoleUser::create([
+            'user_id' => $user->id,
+            'role_id' => 3
+        ]);
+        Author::create([
+            'user_id' => $user->id,
+            'name' => $user->name,
+        ]);
+
+        Mail::to($user->email)
+            ->send(new OrderUserRegister($user, $pass));
+        Log::info('Письмо отправленно при quickRegister: '.$user->email.PHP_EOL.'IP: '.$request->ip());
+
+        return [
+            'status' => true,
+            'messages' => 'Вам отправленно письмо с данными для входа на почту '.$user->email,
+            'user' => $user,
+//            'pass' => $pass
+        ];
+    }*/
+
 }

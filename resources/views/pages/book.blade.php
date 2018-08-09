@@ -108,25 +108,30 @@
 
                                 @if($book->price > 0)
                                     @if(!isset($payment))
-                                        <div style="display: inline-block; font-size: 18px; padding-right: 20px;"><span> <strong>Цена:</strong> {{$book->price}} &#8381; </span></div>
+                                        <div style="display: inline-block; font-size: 18px; padding-right: 20px; padding-top: 20px;"><span> <strong>Цена:</strong> {{$book->price}} &#8381; </span></div>
                                     @endif
                                 @else
-                                    <div class="col-md-12" style=" font-size: 18px; padding: 0px;"><span> <strong>Цена:</strong> Бесплатно </span></div>
+                                    <div class="col-md-12" style="font-size: 18px; padding: 0;"><span> <strong>Цена:</strong> Бесплатно </span></div>
                                 @endif
-                                @if(!Auth::user())
+                                {{--@if(!Auth::user())
                                     <p>Чтобы читать всю книгу, пожалуйста <a href="/login"> войдите на сайт</a></p>
-                                @endif
+                                @endif--}}
 
-                                @if(Auth::user() && $book->price > 0 && $book->chapter_count > 0)
+                                @if($book->price > 0 && $book->chapter_count > 0)
                                     @if(!isset($payment))
-                                        @if(isset($book->complete) && $book->complete == 1)
-                                            <a href="/order/create/{{$book->id}}" class="btn book-btn btn-success" id="order_create" book-id="{{$book->id}}">Купить за {{$book->price}} &#8381;</a >
-                                        @else
-                                            <a href="/order/create/{{$book->id}}" class="btn book-btn btn-success">Подписаться за {{$book->price}} &#8381;</a>
-                                        @endif
+                                        <div style="display: block; padding-right: 20px;">
+                                            @if(isset($book->complete) && $book->complete == 1)
+                                                @if(Auth::user())
+                                                    <a href="/order/create/{{$book->id}}" class="btn book-btn btn-success" id="order_create" book-id="{{$book->id}}">Купить за {{$book->price}} &#8381;</a>
+                                                @else
+                                                    <a href="/order/create/{{$book->id}}" class="btn book-btn btn-success" id="order_user_create" book-id="{{$book->id}}">Купить за {{$book->price}} &#8381;</a>
+                                                @endif
+                                            @else
+                                                <a href="/order/create/{{$book->id}}" class="btn book-btn btn-success">Подписаться за {{$book->price}} &#8381;</a>
+                                            @endif
+                                        </div>
                                     @endif
                                 @endif
-
 
                                 @if(Auth::user())
                                 <a href="/library/add/{{$book->id}}" class="btn btn-warning book-btn" style="color: white;">Добавить в библиотеку</a>
