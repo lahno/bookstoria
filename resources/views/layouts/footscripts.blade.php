@@ -208,7 +208,7 @@
                                 <input type="hidden" name="ext1" value=""/>
                                 <input type="hidden" name="ext2" value=""/>
                                 <p>
-                                    <button type="submit" class="btn btn-primary payment_btn" id="platon_btn">Platon <span></span></button>
+                                    <button type="submit" class="btn btn-primary payment_btn" id="platon_btn">Купить <span></span></button>
                                     <span>+ {{env('PROC_PLATON')}}% комиссия</span>
                                 </p>
                             </form>
