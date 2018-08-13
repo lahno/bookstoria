@@ -143,7 +143,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
-                <h4 class="modal-title text-center" id="myModalLabel">Для покупки книги введите, пожалуйста, Ваш Email и Пароль</h4>
+                <h4 class="modal-title text-center" id="myModalLabel">Для покупки книги введите, пожалуйста, Ваш Email и Пароль для регистрации</h4>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
