@@ -104,9 +104,7 @@
                                 <div class="col-12 col-md-9">
                                     <a href="#"><h4 class="book-title">{{$b->books->name}}</h4></a>
                                     <h6 class="book-title">{{$b->books->author_name}}</h6>
-                                    <p>
-                                        {{$b->books->annotation}} <a href="/book/{{$b->books->id}}" class="read-more">Подробнее</a>
-                                    </p>
+                                    {!!$b->books->annotation!!} <a href="/book/{{$b->books->id}}" class="read-more">Подробнее</a>
                                     <p class="book-tags"><strong>Жанры:</strong>
                                         @foreach($b->books->categories as $c)
                                             {{$c->name}}
