@@ -94,7 +94,7 @@
                     @if(isset($com->comporders) && !empty($com->comporders))
                         @foreach($com->comporders as $b)
                             @if($b->books)
-                            <div class="row wow fadeInUp justify-content-center">
+                            <div class="row wow fadeInUp justify-content-center" style="margin-bottom: 20px;">
                                 <div class="col-5 col-md-3 catalog-item-col">
                                     <div class="catalog-book-item">
                                         <img src="/{{($b->books->cover)?$b->books->cover:''}}" width="100%" height="auto">
