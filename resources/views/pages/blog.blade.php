@@ -66,7 +66,7 @@
                             <div class="row comment-item">
                                 <i class="fa fa-user-circle" style="font-size: 50px"></i>
                                 <div class="comment-info col-10">
-                                    @if(isset($commen->user))
+                                    @if(isset($comment->user))
                                         <h5> {{$comment->user->name}}</h5>
                                     @endif
                                     <span class="book-tags">Дата публикации: {{$comment->created_at}}</span>
