@@ -81,7 +81,7 @@ Route::get('/login/{provider}/callback', 'Auth\LoginController@handleProviderCal
 //Blogs
 Route::get('/blogs', 'BlogsController@getBlogs');
 Route::get('/blog/{id}', 'BlogsController@getBlog');
-Route::post('/commentblog/add', 'BlogsController@addComment');
+Route::post('/commentblog/add', 'BlogsController@addComment')->name('add_comment');
 
 //Competition
 Route::get('/competition/all', 'CompetitionController@getAll');
