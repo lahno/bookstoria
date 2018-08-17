@@ -14,7 +14,9 @@
                         <h2 class="cat-title">{{$blog->name}}</h2>
                         <div class="blog-panel ">
                             <div class="blog-stat border-top border-bottom" style="width: 100%; margin-bottom: 10px;">
-                                <span class="book-tags">{{$blog->user->name}}</span>
+                                @if($blog->user)
+                                    <span class="book-tags">{{$blog->user->name}}</span>
+                                @endif
                                 <span class="book-tags"> | </span>
                                 <span class="book-tags">Дата публикации: {{$blog->created_at}}</span>
                                 <span class="book-tags"> | </span>
