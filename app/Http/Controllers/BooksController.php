@@ -130,6 +130,11 @@ class BooksController extends Controller
                             $book->chapter_count = $request->chaptercount;
                             $book->price = $request->price;
                             $book->public = $request->public;
+                            if ($request->complete){
+                                $book->complete = $request->complete;
+                            }else{
+                                $book->complete = '0';
+                            }
 
                             $book->author_id = Auth::user()->id;
 //                            $author = Author::where('user_id', $user->id)->first();

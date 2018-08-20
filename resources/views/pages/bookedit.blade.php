@@ -29,6 +29,13 @@
                                         <input id="tags" class="form-control" name="author" size="50" value="{{$book->author_name}}" required>
                                     </div>
                                 </div>
+                                <div class="form-group col-md-12">
+                                    <label for="completeSelect">Статус:</label>
+                                    <select class="form-control" name="complete" id="completeSelect">
+                                        <option value="1" {{($book->complete == '1')?'selected':''}}>Закончена книга</option>
+                                        <option value="0" {{($book->complete == '0')?'selected':''}}>Не закончена книга</option>
+                                    </select>
+                                </div>
                                 <div class="form-group custom-file-block col-md-12" style="margin-top: 35px; margin-left: 5px;">
                                     <input type="file" class="custom-file-input" id="customFile" name="cover" lang="es">
                                     @if(isset($book->cover))
@@ -99,7 +106,7 @@
                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="tags"  rows="4" placeholder="Теги (через запятую)">{{$book->tags}}</textarea>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <textarea class="form-control" name="booktailer" id="exampleFormControlTextarea1" rows="1" placeholder="Ссылка на буктрейлер">{{$book->booktailer}}</textarea>
+                                    <textarea class="form-control" name="booktailer" id="exampleFormControlTextarea2" rows="1" placeholder="Ссылка на буктрейлер">{{$book->booktailer}}</textarea>
                                 </div>
                                 <div class="form-group col-md-12" style="text-align: center;">
                                     <input type="text" class="form-control" name="chaptercount" placeholder="С какой главы платная? 0 - бесплатная" value="{{$book->chapter_count}}"required>
